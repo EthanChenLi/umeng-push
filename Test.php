@@ -10,19 +10,19 @@
 namespace  test;
 
 
-use ethan\lib\Andriod;
+use ethan\lib\Android;
 use ethan\lib\Ios;
 use ethan\UpushFactory;
 
 require_once "vendor/autoload.php";
 
 //andriod
-function andriodPush(){
+function androidPush(){
     $sign ="";
     $token ="";
     $appkey ="";
     $secret ="";
-    $result = UpushFactory::getInstance($appkey,$secret)->push(new Andriod(),$token,$sign,
+    $result = UpushFactory::getInstance($appkey,$secret)->push(new Android(),$token,$sign,
     [
         "subtitle"=>"",
         "title"=>"",

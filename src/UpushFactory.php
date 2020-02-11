@@ -8,7 +8,7 @@
  * Time : 4:21 下午
  */
 namespace ethan;
-use ethan\lib\Andriod;
+use ethan\lib\Android;
 use ethan\lib\Ios;
 use ethan\lib\IPush;
 

@@ -9,7 +9,7 @@
  */
 namespace ethan\lib;
 
-class Andriod implements IPush
+class Android implements IPush
 {
     use RequestProcess;
 

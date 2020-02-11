@@ -5,7 +5,7 @@
 
 ### IOS
 ```php
-    use ethan\lib\Andriod;
+    use ethan\lib\Android;
     use ethan\lib\Ios;
     use ethan\UpushFactory;
 
@@ -23,7 +23,7 @@
 ### Andriod
 
 ```php
-    use ethan\lib\Andriod;
+    use ethan\lib\Android;
     use ethan\lib\Ios;
     use ethan\UpushFactory;
 
@@ -31,7 +31,7 @@
     $token ="";
     $appkey ="";
     $secret ="";
-    $result = UpushFactory::getInstance($appkey,$secret)->push(new Andriod(),$token,$sign,
+    $result = UpushFactory::getInstance($appkey,$secret)->push(new Android(),$token,$sign,
     [
        "subtitle"=>"副标题",
        "title"=>"标题",
