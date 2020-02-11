@@ -1,5 +1,5 @@
 {
-    "name": "ehtan/upush-hyperf",
+    "name": "ehtan/upush-swoole",
     "description": "友盟推送-兼容所有swoole协程版",
     "license": "MIT",
     "authors": [
