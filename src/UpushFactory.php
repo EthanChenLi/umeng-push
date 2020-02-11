@@ -27,10 +27,10 @@ class UpushFactory
      * @param string $secret
      * @param bool $debug
      */
-    private function __construct(string $token,string $secret , bool $debug)
+    private function __construct(string $appkey,string $secret , bool $debug)
     {
         $this->_config =[
-            "APPKEY" => $token,
+            "APPKEY" => $appkey,
             "MESSAGE_DEBUG" => $debug,
             "APP_MASTER_SECRET" => $secret
         ];
@@ -39,10 +39,10 @@ class UpushFactory
     private function __clone(){}
 
 
-    public static function getInstance(string $token,string $secret , bool $debug=false){
+    public static function getInstance(string $appkey,string $secret , bool $debug=false){
         //判断实例有无创建，没有的话创建实例并返回，有的话直接返回
         if(!(self::$instance instanceof self)){
-            self::$instance = new self($token,$secret,$debug);
+            self::$instance = new self($appkey,$secret,$debug);
         }
         return self::$instance;
     }
