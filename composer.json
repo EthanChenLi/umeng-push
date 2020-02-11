@@ -1,0 +1,21 @@
+{
+    "name": "ehtan/upush-hyperf",
+    "description": "友盟推送-兼容所有swoole协程版",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ethan",
+            "email": "touch_789@163.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "ethan\\": "src/"
+        }
+    }
+}
