@@ -11,5 +11,5 @@ namespace ethan\lib;
 interface IPush
 {
     public function setConfig(array $config);
-    public function pushMsg(String $token, string $sign ,array $content):array;
+    public function pushMsg(String $token, string $sign ,array $content, array $extra):array;
 }

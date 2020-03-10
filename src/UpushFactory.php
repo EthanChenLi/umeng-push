@@ -23,26 +23,29 @@ class UpushFactory
 
     /**
      * UpushFactory constructor.
-     * @param string $token
+     * @param string $appkey
      * @param string $secret
      * @param bool $debug
+     * @param array $options
      */
-    private function __construct(string $appkey,string $secret , bool $debug)
+    private function __construct(string $appkey,string $secret ,array $options=[])
     {
         $this->_config =[
             "APPKEY" => $appkey,
-            "MESSAGE_DEBUG" => $debug,
             "APP_MASTER_SECRET" => $secret
         ];
+        if(!empty($options)){
+           $this->_config =  array_merge($this->_config,$options);
+        }
     }
 
     private function __clone(){}
 
 
-    public static function getInstance(string $appkey,string $secret , bool $debug=false){
+    public static function getInstance(string $appkey,string $secret ,array $options=[]){
         //判断实例有无创建，没有的话创建实例并返回，有的话直接返回
         if(!(self::$instance instanceof self)){
-            self::$instance = new self($appkey,$secret,$debug);
+            self::$instance = new self($appkey,$secret,$options);
         }
         return self::$instance;
     }
@@ -54,15 +57,18 @@ class UpushFactory
      * @param string $token
      * @param string $sign 签名描述
      * @param array $contents
+     * @param array $extra 约定参数
      *             |- <string> subtitle
      *             |- <string> title
      *             |- <string> body
+     *             |- <array> $extra
+     *
      *
      * @return array
      */
-    public function push(IPush $type, string $token, string $sign ,array $contents):array{
+    public function push(IPush $type, string $token, string $sign ,array $contents,array $extra=[]):array{
         $type->setConfig($this->_config);
-        return $type->pushMsg($token,$sign,$contents);
+        return $type->pushMsg($token,$sign,$contents,$extra);
     }
 
 

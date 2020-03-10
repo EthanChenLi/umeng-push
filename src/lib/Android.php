@@ -20,10 +20,12 @@ class Android implements IPush
         $this->config=$config;
     }
 
-    public function pushMsg(String $token, string $sign ,array $content):array
+    public function pushMsg(String $token, string $sign ,array $content,array $extra=[]):array
     {
         $this->body = [
             "description" => $sign,
+            "mipush"=>!empty($this->config['mipush'])?$this->config['mipush']:"",
+            "mi_activity"=>!empty($this->config['mi_activity'])?$this->config['mi_activity']:"",
             "appkey" => $this->config['APPKEY'],
             "timestamp" => (string)time(),
             "type" =>"unicast",//单播
@@ -34,12 +36,13 @@ class Android implements IPush
                     "ticker" => (string) $content['subtitle']??"",//通知栏提示文字
                     "title" => (string) $content['title']??"",//通知标题
                     "text" => (string) $content['body']??"",//通知文字描述
-                ]
+                ],
+                "extra"=>\json_encode($extra)
             ],
             //true/false 正式/测试环境 测试模式只对“广播”、“组播”类消息生效
             //其他类型的消息任务（如“文件播”）不会走测试模式 测试模式只会将消息发给测试设备。
             //测试设备需要到web上添加。
-            "production_mode" => "{$this->config['MESSAGE_DEBUG']}",
+            "production_mode" => !empty($this->config['production_mode'])?$this->config['production_mode']:false,
         ];
         return $this->requestMessage($this->config['APP_MASTER_SECRET']);
     }

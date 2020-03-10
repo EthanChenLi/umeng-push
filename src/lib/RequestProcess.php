@@ -34,9 +34,10 @@ trait RequestProcess
      */
     protected function requestMessage($masterSecret):array
     {
+
         $url = $this->url ."?sign=" . $this->createSign($masterSecret);
         $client = new Client();
-       # print_r($this->body);die;
+
         try{
             $response=$client->post($url,[
                 RequestOptions::JSON => $this->body

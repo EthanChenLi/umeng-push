@@ -19,31 +19,39 @@ require_once "vendor/autoload.php";
 //andriod
 function androidPush(){
     $sign ="";
-    $token ="";
+    $token ='';
     $appkey ="";
     $secret ="";
-    $result = UpushFactory::getInstance($appkey,$secret)->push(new Android(),$token,$sign,
+    $mi_activity="";
+    $mi_push="";
+    $result = UpushFactory::getInstance($appkey,$secret,['mi_activity'=>$mi_activity,"mipush"=>$mi_push])->push(new Android(),$token,$sign,
     [
-        "subtitle"=>"",
-        "title"=>"",
-        "body"=>""
-    ]);
+        "subtitle"=>"subtitle",
+        "title"=>"title",
+        "body"=>"body"
+    ],[
+            "key1"=>"val1",
+            "key2"=>"val2"
+        ]);
     print_r($result);
 }
 
 function iosPush(){
     $sign ="";
-    $token ='';
+    $token ="";
     $appkey ="";
     $secret ="";
     $result = UpushFactory::getInstance($appkey,$secret)->push(new Ios(),$token,$sign,[
         "subtitle"=>"subtitle",
         "title"=>"title",
         "body"=>"body"
+    ],[
+        "key1"=>"val1",
+        "key2"=>"val2"
     ]);
     print_r($result);
 
 }
-#andriodPush();
+#androidPush();
 iosPush();
 

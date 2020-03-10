@@ -18,7 +18,7 @@ class Ios implements IPush
        $this->config=$config;
     }
 
-    public function pushMsg(String $token, string $sign, array $content): array
+    public function pushMsg(String $token, string $sign, array $content,array $extra=[]): array
     {
         $this->body = [
             "description" => $sign,
@@ -38,8 +38,11 @@ class Ios implements IPush
             ],
             //true/false 正式/测试环境 测试模式只对“广播”、“组播”类消息生效，其他类型的消息任务（如“文件播”）不会走测试模式 测试模式只会将消息发给测试设备。
             //测试设备需要到web上添加。
-            "production_mode" => "{$this->config['MESSAGE_DEBUG']}",
+            "production_mode" => !empty($this->config['production_mode'])?$this->config['production_mode']:false,
         ];
+        if(!empty($extra)){
+         $this->body["payload"] = array_merge($this->body["payload"],$extra);
+        }
         return $this->requestMessage($this->config['APP_MASTER_SECRET']);
     }
 
